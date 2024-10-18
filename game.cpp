@@ -36,9 +36,10 @@ const string WHITE = "\033[37m";   // White color
 // Game variables
 int bunny_health = 100;
 int mana = 100;
-int cat_health = 1000;
-int bunny_mana = 10000;
+int cat_health = 9999;
+int cat_mana = 9999;
 bool game_won = false;
+
 /* */
 
 /* Base Functions */
@@ -78,13 +79,16 @@ void clear() {
 
 int random(int min, int max) {
     //min++;
-    max++;
+    max++; // to not limit max to a number below max.
     return (rand() % (max - min)) + min;
     /*
     Maths
     ----
     rand could be anything.
-
+    suppose rand is 1188
+    min and max respectively 3 and 6
+    1188%(6-3) = 0
+    0 + 3 = 3
     */
 }
 /* */
@@ -103,12 +107,21 @@ for this ill restrict mc with a mana system (iam a genius, a bunny with mana lol
 // Where the actual game is at
 int game() {
     clear();
-    cout << random(1,100);
+    /*
+    enemy
+    cat_health
+    cat_mana
+    -----------
+    space
+    bunny
+    bunny_health
+    bunny_mana
+    */
     return 0;
 }
 
 int main() {
-    // Get the current time and use that as time for randomess
+    // Get the current time and use that as seed for randomess
     srand(time(0));
     clear();
     print("hi", GREEN);
@@ -118,7 +131,12 @@ int main() {
     print("");
     print("Enjoy!", GREEN);
     //this_thread::sleep_for(chrono::seconds(2));
+    sleep(6);
+    print("hope the explanation was okay.", YELLOW);
+    print("");
+    print("good, now all the best.", RED);
     sleep(2);
+
     game(); // Start the game
     return 0;
 }
